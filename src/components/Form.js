@@ -58,7 +58,6 @@ const Form = () => {
       additionalInfo,
     } = formData;
 
-    // Validation: Check if any field is empty
     if (
       !fullName.trim() ||
       !phoneNumber.trim() ||
@@ -88,7 +87,7 @@ Additional Info: ${additionalInfo}
     `;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "919744775666"; // 🔁 Replace with your WhatsApp number
+    const whatsappNumber = "919744775666"; 
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
 

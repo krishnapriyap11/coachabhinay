@@ -1,5 +1,5 @@
 import React from "react";
-import "./Programs.css"; // Link to the external CSS file for styling
+import "./Programs.css"; 
 
 const Programs = () => {
   return (

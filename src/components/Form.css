@@ -114,7 +114,7 @@ button[type="submit"]:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(6px);
   z-index: 0;
 }

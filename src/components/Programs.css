@@ -4,12 +4,12 @@
   }
   
   .program-box {
-    background: rgba(255, 255, 255, 0.1); /* glassy effect */
+    background: rgba(255, 255, 255, 0.1); 
     border-radius: 16px;
     padding: 24px;
     margin-bottom: 24px;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
     color: #fff;
     transition: all 0.3s ease;
@@ -75,12 +75,11 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(6px);
     z-index: 0;
   }
   
-  /* Stack content above background */
   .home-container > * {
     position: relative;
     z-index: 1;

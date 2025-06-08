@@ -1,4 +1,4 @@
-/* Prevent text from being selectable */
+
 * {
   user-select: none;
 }
@@ -14,11 +14,11 @@ body, html {
 .home-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align items at the top */
+  justify-content: flex-start;
   text-align: center;
   padding: 20px;
-  background-color: #9AA6B2; /* Background color */
-  flex-grow: 1; /* Allow this container to grow and take available space */
+  background-color: #9AA6B2; 
+  flex-grow: 1; 
 }
 
 .profile-pic {
@@ -112,12 +112,11 @@ body, html {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.4); 
   backdrop-filter: blur(6px);
   z-index: 0;
 }
 
-/* Stack content above background */
 .home-container > * {
   position: relative;
   z-index: 1;

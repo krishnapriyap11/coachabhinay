@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/coachabhinay/static/css/main.a45ed72a.css",
+    "main.js": "/coachabhinay/static/js/main.0b8ad7e1.js",
+    "static/js/453.9b2725b0.chunk.js": "/coachabhinay/static/js/453.9b2725b0.chunk.js",
+    "index.html": "/coachabhinay/index.html",
+    "main.a45ed72a.css.map": "/coachabhinay/static/css/main.a45ed72a.css.map",
+    "main.0b8ad7e1.js.map": "/coachabhinay/static/js/main.0b8ad7e1.js.map",
+    "453.9b2725b0.chunk.js.map": "/coachabhinay/static/js/453.9b2725b0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a45ed72a.css",
+    "static/js/main.0b8ad7e1.js"
+  ]
+}

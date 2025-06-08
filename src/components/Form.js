@@ -10,10 +10,10 @@ const Form = () => {
     email: "",
     instagram: "",
     sex: "",
-    coachingCategory: [], // Ensure this is always an array
+    coachingCategory: [],
     usingPerformanceEnhancements: "",
     financiallyInvest: "",
-    additionalInfo: "" // New field for additional information
+    additionalInfo: ""
   });
 
   const handleChange = (e) => {
@@ -35,12 +35,6 @@ const Form = () => {
         ...formData,
         [name]: value,
       });
-    } else if (type === "select-multiple") {
-      const options = Array.from(e.target.selectedOptions, (option) => option.value);
-      setFormData({
-        ...formData,
-        [name]: options,
-      });
     } else {
       setFormData({
         ...formData,
@@ -49,39 +43,66 @@ const Form = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwu6D9MB7lye37uqO0FbONEk9wEexxtwuGhrKwIhcctInUK5hGGgHT2-BpCZ2upJMWx1A/exec",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-        }
-      );
-  
-      const result = await response.json();
-      if (result.result === "success") {
-        alert("Form submitted successfully!");
-        setFormData({
-          fullName: "",
-          phoneNumber: "",
-          email: "",
-          instagram: "",
-          sex: "",
-          coachingCategory: [],
-          usingPerformanceEnhancements: "",
-          financiallyInvest: "",
-          additionalInfo: ""
-        });
-      } else {
-        alert("There was an issue submitting the form.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong.");
+
+    const {
+      fullName,
+      phoneNumber,
+      email,
+      instagram,
+      sex,
+      coachingCategory,
+      usingPerformanceEnhancements,
+      financiallyInvest,
+      additionalInfo,
+    } = formData;
+
+    // Validation: Check if any field is empty
+    if (
+      !fullName.trim() ||
+      !phoneNumber.trim() ||
+      !email.trim() ||
+      !instagram.trim() ||
+      !sex ||
+      coachingCategory.length === 0 ||
+      !usingPerformanceEnhancements ||
+      !financiallyInvest ||
+      !additionalInfo.trim()
+    ) {
+      alert("Please fill all the fields before submitting.");
+      return;
     }
+
+    const message = `
+New Coaching Inquiry:
+Name: ${fullName}
+Phone: ${phoneNumber}
+Email: ${email}
+Instagram: ${instagram}
+Sex: ${sex}
+Category: ${coachingCategory.join(", ")}
+Using Enhancements: ${usingPerformanceEnhancements}
+Willing to Invest: ${financiallyInvest}
+Additional Info: ${additionalInfo}
+    `;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = "919969757797"; // 🔁 Replace with your WhatsApp number
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank");
+
+    setFormData({
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      instagram: "",
+      sex: "",
+      coachingCategory: [],
+      usingPerformanceEnhancements: "",
+      financiallyInvest: "",
+      additionalInfo: ""
+    });
   };
 
   return (
@@ -96,7 +117,6 @@ const Form = () => {
       }}
     >
       <form onSubmit={handleSubmit}>
-        {/* Full Name */}
         <div>
           <label>Full Name</label>
           <input
@@ -107,7 +127,6 @@ const Form = () => {
           />
         </div>
 
-        {/* Phone Number */}
         <div>
           <label>Phone Number</label>
           <input
@@ -118,7 +137,6 @@ const Form = () => {
           />
         </div>
 
-        {/* Email */}
         <div>
           <label>Email</label>
           <input
@@ -129,7 +147,6 @@ const Form = () => {
           />
         </div>
 
-        {/* Instagram */}
         <div>
           <label>Instagram</label>
           <input
@@ -140,7 +157,6 @@ const Form = () => {
           />
         </div>
 
-        {/* Sex */}
         <div>
           <label>Sex</label>
           &nbsp;
@@ -167,7 +183,6 @@ const Form = () => {
           </label>
         </div>
 
-        {/* Coaching Category */}
         <div>
           <label>What category of coaching would you like to discuss?</label>
           <br />
@@ -194,7 +209,6 @@ const Form = () => {
           </label>
         </div>
 
-        {/* Performance Enhancements */}
         <div className="radio-group">
           <label>Are you using performance enhancements?</label>
           <label>
@@ -219,7 +233,6 @@ const Form = () => {
           </label>
         </div>
 
-        {/* Financial Investment */}
         <div>
           <label>Are you prepared to financially invest in your goals?</label>
           &nbsp;
@@ -246,7 +259,6 @@ const Form = () => {
           </label>
         </div>
 
-        {/* Additional Information */}
         <div>
           <label>What would you like me to know about you before we chat?</label>
           <textarea
@@ -257,7 +269,6 @@ const Form = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <div>
           <button type="submit">Submit</button>
         </div>

@@ -88,7 +88,7 @@ Additional Info: ${additionalInfo}
     `;
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "919969757797"; // 🔁 Replace with your WhatsApp number
+    const whatsappNumber = "919744775666"; // 🔁 Replace with your WhatsApp number
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
 

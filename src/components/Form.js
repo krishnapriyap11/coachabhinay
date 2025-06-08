@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./Form.css";
 
-
-
 const Form = () => {
+  const base = process.env.PUBLIC_URL;
+
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -11,7 +11,7 @@ const Form = () => {
     instagram: "",
     sex: "",
     coachingCategory: [], // Ensure this is always an array
-    usingPerformanceEnhancements: false,
+    usingPerformanceEnhancements: "",
     financiallyInvest: "",
     additionalInfo: "" // New field for additional information
   });
@@ -21,7 +21,6 @@ const Form = () => {
 
     if (type === "checkbox") {
       setFormData((prevData) => {
-        // If the checkbox is checked, add the value to the array
         const newCoachingCategory = checked
           ? [...prevData.coachingCategory, value]
           : prevData.coachingCategory.filter((item) => item !== value);
@@ -54,15 +53,17 @@ const Form = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwu6D9MB7lye37uqO0FbONEk9wEexxtwuGhrKwIhcctInUK5hGGgHT2-BpCZ2upJMWx1A/exec", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwu6D9MB7lye37uqO0FbONEk9wEexxtwuGhrKwIhcctInUK5hGGgHT2-BpCZ2upJMWx1A/exec",
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+        }
+      );
   
       const result = await response.json();
       if (result.result === "success") {
         alert("Form submitted successfully!");
-  
         setFormData({
           fullName: "",
           phoneNumber: "",
@@ -70,11 +71,10 @@ const Form = () => {
           instagram: "",
           sex: "",
           coachingCategory: [],
-          usingPerformanceEnhancements: false,
+          usingPerformanceEnhancements: "",
           financiallyInvest: "",
           additionalInfo: ""
         });
-  
       } else {
         alert("There was an issue submitting the form.");
       }
@@ -83,192 +83,187 @@ const Form = () => {
       alert("Something went wrong.");
     }
   };
-  
-  
-  
 
   return (
-    <div className="home-container"
-    style={{
-      backgroundImage: "url('/background.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      minHeight: "100vh",
-    }}
-  >
-    <form onSubmit={handleSubmit}>
-      {/* Full Name */}
-      <div>
-        <label>Full Name</label>
-        <input
-          type="text"
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-        />
-      </div>
-
-      {/* Phone Number */}
-      <div>
-        <label>Phone Number</label>
-        <input
-          type="text"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-        />
-      </div>
-
-      {/* Email */}
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
-
-      {/* Instagram */}
-      <div>
-        <label>Instagram</label>
-        <input
-          type="text"
-          name="instagram"
-          value={formData.instagram}
-          onChange={handleChange}
-        />
-      </div>
-
-      {/* Sex */}
-      <div>
-        <label>Sex</label>
-        &nbsp;
-        <label>
+    <div
+      className="home-container"
+      style={{
+        backgroundImage: `url(${base}/background.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+      }}
+    >
+      <form onSubmit={handleSubmit}>
+        {/* Full Name */}
+        <div>
+          <label>Full Name</label>
           <input
-            type="radio"
-            name="sex"
-            value="male"
-            checked={formData.sex === "male"}
+            type="text"
+            name="fullName"
+            value={formData.fullName}
             onChange={handleChange}
           />
-          Male
-        </label>
-        &nbsp;
-        <label>
+        </div>
+
+        {/* Phone Number */}
+        <div>
+          <label>Phone Number</label>
           <input
-            type="radio"
-            name="sex"
-            value="female"
-            checked={formData.sex === "female"}
+            type="text"
+            name="phoneNumber"
+            value={formData.phoneNumber}
             onChange={handleChange}
           />
-          Female
-        </label>
-      </div>
+        </div>
 
-      {/* Coaching Category */}
-      <div>
-        <label>What category of coaching would you like to discuss?</label>
-        <br></br>
-        <label>
+        {/* Email */}
+        <div>
+          <label>Email</label>
           <input
-            type="checkbox"
-            name="coachingCategory"
-            value="transforming"
-            checked={formData.coachingCategory.includes("transforming")}
+            type="email"
+            name="email"
+            value={formData.email}
             onChange={handleChange}
           />
-          Transforming
-        </label>
-        &nbsp;
-        <label>
+        </div>
+
+        {/* Instagram */}
+        <div>
+          <label>Instagram</label>
           <input
-            type="checkbox"
-            name="coachingCategory"
-            value="competition"
-            checked={formData.coachingCategory.includes("competition")}
+            type="text"
+            name="instagram"
+            value={formData.instagram}
             onChange={handleChange}
           />
-          Competition
-        </label>
-      </div>
+        </div>
 
-      {/* Performance Enhancements */}
-      {/* Performance Enhancements */}
-<div className="radio-group">
-  <label>Are you using performance enhancements?</label>
-  <label>
-    <input
-      type="radio"
-      name="usingPerformanceEnhancements"
-      value="yes"
-      checked={formData.usingPerformanceEnhancements === "yes"}
-      onChange={handleChange}
-    />
-    Yes
-  </label>
-  <label>
-    <input
-      type="radio"
-      name="usingPerformanceEnhancements"
-      value="no"
-      checked={formData.usingPerformanceEnhancements === "no"}
-      onChange={handleChange}
-    />
-    No
-  </label>
-</div>
+        {/* Sex */}
+        <div>
+          <label>Sex</label>
+          &nbsp;
+          <label>
+            <input
+              type="radio"
+              name="sex"
+              value="male"
+              checked={formData.sex === "male"}
+              onChange={handleChange}
+            />
+            Male
+          </label>
+          &nbsp;
+          <label>
+            <input
+              type="radio"
+              name="sex"
+              value="female"
+              checked={formData.sex === "female"}
+              onChange={handleChange}
+            />
+            Female
+          </label>
+        </div>
 
+        {/* Coaching Category */}
+        <div>
+          <label>What category of coaching would you like to discuss?</label>
+          <br />
+          <label>
+            <input
+              type="checkbox"
+              name="coachingCategory"
+              value="transforming"
+              checked={formData.coachingCategory.includes("transforming")}
+              onChange={handleChange}
+            />
+            Transforming
+          </label>
+          &nbsp;
+          <label>
+            <input
+              type="checkbox"
+              name="coachingCategory"
+              value="competition"
+              checked={formData.coachingCategory.includes("competition")}
+              onChange={handleChange}
+            />
+            Competition
+          </label>
+        </div>
 
-      {/* Financial Investment */}
-      <div>
-        <label>Are you prepared to financially invest in your goals?</label>
-        &nbsp;
-        <label>
-          <input
-            type="radio"
-            name="financiallyInvest"
-            value="yes"
-            checked={formData.financiallyInvest === "yes"}
+        {/* Performance Enhancements */}
+        <div className="radio-group">
+          <label>Are you using performance enhancements?</label>
+          <label>
+            <input
+              type="radio"
+              name="usingPerformanceEnhancements"
+              value="yes"
+              checked={formData.usingPerformanceEnhancements === "yes"}
+              onChange={handleChange}
+            />
+            Yes
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="usingPerformanceEnhancements"
+              value="no"
+              checked={formData.usingPerformanceEnhancements === "no"}
+              onChange={handleChange}
+            />
+            No
+          </label>
+        </div>
+
+        {/* Financial Investment */}
+        <div>
+          <label>Are you prepared to financially invest in your goals?</label>
+          &nbsp;
+          <label>
+            <input
+              type="radio"
+              name="financiallyInvest"
+              value="yes"
+              checked={formData.financiallyInvest === "yes"}
+              onChange={handleChange}
+            />
+            Yes
+          </label>
+          &nbsp;
+          <label>
+            <input
+              type="radio"
+              name="financiallyInvest"
+              value="no"
+              checked={formData.financiallyInvest === "no"}
+              onChange={handleChange}
+            />
+            No
+          </label>
+        </div>
+
+        {/* Additional Information */}
+        <div>
+          <label>What would you like me to know about you before we chat?</label>
+          <textarea
+            name="additionalInfo"
+            placeholder="This is to help me prepare for our discussion"
+            value={formData.additionalInfo}
             onChange={handleChange}
           />
-          Yes
-        </label>
-        &nbsp;
-        <label>
-          <input
-            type="radio"
-            name="financiallyInvest"
-            value="no"
-            checked={formData.financiallyInvest === "no"}
-            onChange={handleChange}
-          />
-          No
-        </label>
-      </div>
+        </div>
 
-      {/* Additional Information */}
-      <div>
-        <label>What would you like me to know about you before we chat?</label>
-        <textarea
-          name="additionalInfo"
-          placeholder="This is to help me prepare for our discussion"
-          value={formData.additionalInfo}
-          onChange={handleChange}
-        />
-      </div>
-
-      {/* Submit Button */}
-      <div>
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+        {/* Submit Button */}
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </div>
   );
-
 };
 
 export default Form;

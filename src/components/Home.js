@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
+  const base = process.env.PUBLIC_URL;
+
   return (
     <div
       className="home-container"
       style={{
-        backgroundImage: "url('/background.jpg')",
+        backgroundImage: `url(${base}/background.jpg)`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -18,7 +20,7 @@ const Home = () => {
 
       <Link className="btn" to="/info">
         <div className="btn-content">
-          <img src="btn1.jpg" alt="About" />
+          <img src={`${base}/btn1.jpg`} alt="About" />
           <div className="btn-text">
             <strong>About Me</strong>
           </div>
@@ -27,7 +29,7 @@ const Home = () => {
 
       <Link className="btn" to="/programs">
         <div className="btn-content">
-          <img src="btn2.jpg" alt="Programs" />
+          <img src={`${base}/btn2.jpg`} alt="Programs" />
           <div className="btn-text">
             <strong>Programs</strong>
           </div>
@@ -36,7 +38,7 @@ const Home = () => {
 
       <Link className="btn" to="/form">
         <div className="btn-content">
-          <img src="btn3.jpg" alt="Work" />
+          <img src={`${base}/btn3.jpg`} alt="Work" />
           <div className="btn-text">
             <strong>Let's work together!</strong><br />
             Book an appointment!

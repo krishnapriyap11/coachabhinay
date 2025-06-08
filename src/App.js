@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Info from "./components/Info";
 import Form from "./components/Form";
@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <Router>
-      <div style={{ paddingBottom: "60px" }}> {/* Padding to prevent overlap */}
+      <div style={{ paddingBottom: "60px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/info" element={<Info />} />
